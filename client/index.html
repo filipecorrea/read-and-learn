@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Read and Rank</title>
+  <meta name="description" content="Bluemix application that use IBM Watson's Document Conversion and Retrieve and Rank service.">
+  <meta name="keywords" content="ibm, bluemix, watson, document, conversion, retrieve, rank">
+  <meta name="author" content="Filipe Corrêa">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="_common/style.css">
+  <link rel="stylesheet" href="_common/font-awesome-4.4.0/css/font-awesome.min.css">
+
+  <!-- Components -->
+  <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-social/angular-social.js"></script>
+
+  <!-- Application -->
+  <script src="app.js"></script>
+
+  <!-- Routes -->
+  <script src="upload/upload.route.js"></script>
+  <script src="about/about.route.js"></script>
+
+  <!-- Directives -->
+  <!-- <script src="_shared/loader/loader.directive.js"></script> -->
+
+  <!-- Services -->
+  <!-- <script src="storage/cookie.service.js"></script> -->
+  <!-- <script src="storage/local.service.js"></script> -->
+
+  <!-- Controllers -->
+  <script src="_shared/navigation/navigation.controller.js"></script>
+  <script src="upload/upload.controller.js"></script>
+  <script src="about/about.controller.js"></script>
+</head>
+
+<body ng-app="natural-language-classifier">
+  <div ui-view='navigation' ng-class='[state.current.data.animateMenu]'></div>
+  <div ui-view='main' ng-class='[state.current.data.animateMain]' class='view--animated'></div>
+</body>
+</html>
