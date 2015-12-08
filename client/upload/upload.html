@@ -1,0 +1,11 @@
+<section class="col-xs-12 col-sm-offset-1">
+  <button type="button" class="btn btn-default btn-lg">Upload file</button>
+  <p>Upload a PDF, Microsoft Word or HTML document (1 MB maximum file size).</p>
+</section>
+
+<aside class="col-xs-12 col-sm-10 col-sm-offset-1" ng-show="question.length">
+  <div class="center">
+    <img class="loader" ng-hide="answer.length" src="../watson.gif">
+  </div>
+  <p ng-show="answer.length">I'm {{confidence}} sure that you want to know about weather {{answer}}.</p>
+</aside>

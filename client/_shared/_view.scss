@@ -1,0 +1,13 @@
+.view--animate-entry {
+
+    &.ng-enter {
+        transition: transform 0.25s ease-in-out, opacity 0.5s ease-out;
+        opacity:0;
+        transform: translate(0, -20px);
+    }
+    &.ng-enter-active {
+        opacity:1;
+        transform: translate(0, 0);
+    }
+
+}

@@ -1,0 +1,34 @@
+section {
+
+  input {
+    display: block;
+  	width: 100%;
+    padding: 0;
+    border: none;
+  	resize: none;
+  	overflow: hidden;
+
+    &:focus {
+       outline: 0;
+    }
+  }
+}
+
+aside {
+
+  font-size: 28px;
+  -webkit-transition:all ease-out 0.5s;
+  transition:all ease-out 0.5s;
+
+  &.ng-hide {
+    opacity: 0;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  img.loader {
+    width: 3em;
+  }
+}
