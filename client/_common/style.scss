@@ -1,0 +1,11 @@
+// Bootstrap base style
+@import 'bootstrap/bootstrap-theme';
+@import 'bootstrap/bootstrap';
+
+@import '../_shared/shared';
+@import '../_shared/view';
+// @import '../_shared/loader/loader';
+@import '../_shared/navigation/navigation';
+
+@import '../qa/qa';
+@import '../about/about';
