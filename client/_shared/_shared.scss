@@ -11,7 +11,6 @@
 // $grad-white-to-gray: linear-gradient(-180deg, #FFF 0%, lighten($gray, 15%) 100%);
 
 // Fonts
-// @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
 $family-default: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 
@@ -26,24 +25,20 @@ body {
   background-color: #fff;
 }
 
+h1, h2, p, button {
+  margin: 1em 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
 h1 {
   font-size: 36px;
-  margin-bottom: 35px;
-  // margin-bottom: 1em;
 }
 
 h2 {
   font-size: 28px;
-  margin-bottom: 1.8em;
-}
-
-p {
-  //color: #f35858;
-  // margin-bottom: 1em;
 }
 
 a {
@@ -52,20 +47,17 @@ a {
     color: #337ab7;
     text-decoration: none;
   }
+
+}
+
+strong {
+  font-weight: 400;
 }
 
 aside, section {
   margin-bottom: 2.5em;
 }
 
-aside {
-  strong {
-    font-weight: 400;
-  }
-
-  ul {
-    padding: 0 !important;
-    font-size: 18px;
-    list-style: none;
-  }
+.txt-center {
+  text-align: center;
 }
