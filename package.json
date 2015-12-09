@@ -19,7 +19,7 @@
     "jsonwebtoken": "^5.0.5",
     "q": "^1.4.1",
     "request": "^2.61.0",
-    "watson-developer-cloud": "~0.9.11"
+    "watson-developer-cloud": "~1.0.5"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

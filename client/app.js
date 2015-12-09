@@ -1,4 +1,4 @@
-var app = angular.module('natural-language-classifier', [
+var app = angular.module('read-and-rank', [
   'ui.router',
   'ui.bootstrap',
   'ngAnimate',

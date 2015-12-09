@@ -1,4 +1,4 @@
-angular.module('natural-language-classifier')
+angular.module('read-and-rank')
 .config(function ($stateProvider) {
   $stateProvider
     .state('upload',{
