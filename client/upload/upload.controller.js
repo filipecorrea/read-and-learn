@@ -1,37 +1,35 @@
-angular.module('natural-language-classifier').controller('uploadController', function ($scope, $rootScope, $http) {
+angular.module('read-and-rank').controller('uploadController', function ($scope, $rootScope, $http) {
 
-  $scope.textChanged = function(event) {
-    if ($scope.question) {
+  $scope.file = null;
+  $scope.answerUnits = null;
 
-      $scope.answer = '';
-      $scope.confidence = '';
+  $scope.upload = function() {
 
-      $http({
-        method: 'POST',
-        url: '/api/nlc',
-        data: { 'text': $scope.question }
-      }).then(function successCallback(response) {
-        $scope.answer = response.data.top_class;
-        $scope.confidence = percentNumber(response.data.classes[0].confidence);
-      }, function errorCallback(response) {
-        // TODO: Treat error
-        //console.log('error');
-        //console.log(response.status);
-      });
-    }
-  };
+    // TODO Ask for file
 
-  /**
-   * Convert to percentage and round up a number with two decimal places.
-   * @param  {Number} number The number to be converted.
-   * @return {String}        The number converted.
-   *
-   * @author  filipecorrea@br.ibm.com
-   * @since   2015-11-25
-   * @version 0.1
-   */
-  var percentNumber = function(number) {
-    return +(Math.ceil(number * 100 + "e+2")  + "e-2") + "%";
+    $scope.file = 'data/samplePDF.pdf'; // TODO Change to uploaded file name and path
+    $scope.answerUnits = null;
+
+    // TODO Upload file to server
+
+    // Call API to convert documents into normalized sets of answer units
+    $http({
+      method: 'POST',
+      url: '/api/document-conversion',
+      data: { 'file': $scope.file }
+    }).then(function successCallback(response) {
+      //console.log(response);
+      $scope.answerUnits = response.data;
+
+      // TODO Call retrieve and rank API
+      // This sets can be used to train the retrieve and rank service.
+
+    }, function errorCallback(response) {
+      // TODO Treat error
+      //console.log('error');
+      //console.log(response.status);
+    });
+
   };
 
 });
