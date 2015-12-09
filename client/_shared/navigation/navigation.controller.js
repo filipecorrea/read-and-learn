@@ -1,5 +1,4 @@
-angular.module('natural-language-classifier')
-.controller('navigationController', function ($rootScope, $location, $scope, $timeout) {
+angular.module('read-and-rank').controller('navigationController', function ($rootScope, $location, $scope, $timeout) {
 
   $scope.navbarCollapsed = true;
 
