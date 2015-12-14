@@ -1,0 +1,13 @@
+<section class="txt-center col-sm-10 col-sm-offset-1">
+  <h1>Read documents</h1>
+  <button type="button" ng-click="read()" class="btn btn-default btn-lg">Read sample documents</button>
+  <button type="button" ng-click="upload()" class="btn btn-default btn-lg disabled">Upload documents</button>
+  <!-- <p>Upload a PDF, Microsoft Word or HTML document (1 MB maximum size).</p> -->
+</section>
+
+<aside class="txt-center col-sm-10 col-sm-offset-1" ng-show="file || answerUnits">
+    <img class="loader" ng-hide="answerUnits" src="../watson.gif">
+    <p ng-hide="answerUnits">Reading documents...</p>
+
+    <p ng-show="answerUnits">{{answerUnits}}</p>
+</aside>

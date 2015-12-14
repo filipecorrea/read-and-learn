@@ -1,13 +1,13 @@
 angular.module('read-and-learn')
 .config(function ($stateProvider) {
   $stateProvider
-    .state('about',{
-      url: '/about',
+    .state('read',{
+      url: '/read',
       data: {'animateMain': 'view--animate-entry'},
       views: {
         'main': {
-          templateUrl: 'about/about.html',
-          controller: 'aboutController'
+          templateUrl: 'read/read.html',
+          controller: 'readController'
         },
         'navigation': {
           templateUrl: '_shared/navigation/navigation.html',

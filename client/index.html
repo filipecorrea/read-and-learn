@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Read and Rank</title>
+  <title>Read and Learn</title>
   <meta name="description" content="Bluemix application that use IBM Watson's Document Conversion and Retrieve and Rank service.">
   <meta name="keywords" content="ibm, bluemix, watson, document, conversion, retrieve, rank">
   <meta name="author" content="Filipe Corrêa">
@@ -27,7 +27,8 @@
   <script src="app.js"></script>
 
   <!-- Routes -->
-  <script src="upload/upload.route.js"></script>
+  <script src="read/read.route.js"></script>
+  <script src="qa/qa.route.js"></script>
   <script src="about/about.route.js"></script>
 
   <!-- Directives -->
@@ -39,11 +40,12 @@
 
   <!-- Controllers -->
   <script src="_shared/navigation/navigation.controller.js"></script>
-  <script src="upload/upload.controller.js"></script>
+  <script src="read/read.controller.js"></script>
+  <script src="qa/qa.controller.js"></script>
   <script src="about/about.controller.js"></script>
 </head>
 
-<body ng-app="read-and-rank">
+<body ng-app="read-and-learn">
   <div ui-view='navigation' ng-class='[state.current.data.animateMenu]'></div>
   <div ui-view='main' ng-class='[state.current.data.animateMain]' class='view--animated'></div>
 </body>

@@ -6500,6 +6500,17 @@ aside {
   aside img.loader {
     width: 3em; }
 
+section input {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  border: none;
+  resize: none;
+  overflow: hidden; }
+  section input:focus {
+    outline: 0; }
+
 p.copy {
   margin-top: 2em;
   text-align: center;

@@ -1,4 +1,4 @@
-angular.module('read-and-rank').controller('navigationController', function ($rootScope, $location, $scope, $timeout) {
+angular.module('read-and-learn').controller('navigationController', function ($rootScope, $location, $scope, $timeout) {
 
   $scope.navbarCollapsed = true;
 

@@ -1,1 +1,1 @@
-# read-and-rank
+# read-and-learn
