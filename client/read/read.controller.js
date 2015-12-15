@@ -13,17 +13,20 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
       url: '/api/document-conversion',
       data: { 'file': $scope.file }
     }).then(function successCallback(response) {
-      $scope.file = null;
-      //console.log(response);
+      
       $scope.answerUnits = response.data;
 
       // Add documents to a collection
       $http({
         method: 'POST',
         url: '/api/retrieve-and-rank',
-        data: { 'data': response.data }
+        data: {
+          'data': $scope.answerUnits,
+          'path': $scope.file
+        }
       }).then(function successCallback(response) {
         console.log(response);
+        $scope.file = null;
         //$scope.answerUnits = response.data;
 
       }, function errorCallback(response) {
