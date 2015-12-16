@@ -1,156 +1,297 @@
 var watson = require('watson-developer-cloud');
-var fs = require('fs');
+
+// http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/retrieve-and-rank/api/v1/
+
+var retrieve_and_rank = watson.retrieve_and_rank({
+  username: 'f572ec81-7297-406d-afe6-f6105f1dc1e0',
+  password: '8pAwhUstlrIX',
+  version: 'v1'
+});
 
 /**
- * Convert documents into normalized sets of answer units.
+ * List Solr clusters
  * @param  {Object}   req  Requested object.
  * @param  {Object}   res  Response object.
- * @return {Object}        Document object normalized.
+ * @return {Object}        List of Solr clusters
  *
  * @author  filipecorrea@br.ibm.com
- * @since   2015-12-09
+ * @since   2015-12-15
  * @version 0.1.0
  */
-exports.post  = function(req, res) {
-
-  // Convert answer units to documents
-
-  //console.log(__filename);
-  //console.log(__dirname);
-  //console.log(req.body.path);
-
-  var credentials = {
-    username: 'f572ec81-7297-406d-afe6-f6105f1dc1e0',
-    password: '8pAwhUstlrIX',
-    version: 'v1'
-  };
-  var retrieve_and_rank = watson.retrieve_and_rank(credentials);
-
-  var answerUnits = req.body.data;
-
-  var author = getDocumentAuthor(answerUnits);
-
-
-  for (var i = 0; i < answerUnits.answer_units.length; i++) {
-    var doc = {};
-    doc.id = i + 1;
-    doc.author = author;
-    doc.title = answerUnits.answer_units[i].title;
-    doc.body = answerUnits.answer_units[i].content[0].text;
-
-    // documents += '"add": { "doc":' + JSON.stringify(doc);
-    // documents += '},';
-
-    indexDocument(retrieve_and_rank, 'scf9b13b48_1835_48cf_ac7f_143b7bb8712b', 'example-collection', doc);
-  }
-
-  //var documents = convertAnswerUnitsToDocuments(req.body.data);
-  //console.log(documents);
-
-  // http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/retrieve-and-rank/api/v1/
-
-  //var document_conversion = watson.document_conversion(credentials);
-
-
-  //listClusters(retrieve_and_rank);
+exports.listClusters = function(req, res) {
+  retrieve_and_rank.listClusters({}, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
 };
 
-function convertAnswerUnitsToDocuments(answerUnits) {
+/**
+ * Create Solr cluster
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        Solr cluster information
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-15
+ * @version 0.1.0
+ */
+exports.createCluster = function(req, res) {
+  retrieve_and_rank.createCluster({
+    cluster_size: '', // Send an empty value to create a small free-size cluster for testing
+    cluster_name: ''
+  }, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
 
-  var documents = '{';
-  var author = getDocumentAuthor(answerUnits);
+/**
+ * Get information about a Solr cluster
+ * @param  {Object}   req  Requested object
+ * @param  {Object}   res  Response object
+ * @return {Object}        Solr cluster information
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-15
+ * @version 0.1.0
+ */
+exports.readCluster = function(req, res) {
+  retrieve_and_rank.pollCluster({
+    cluster_id: req.params.cluster_id
+  }, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
 
-  for (var i = 0; i < answerUnits.answer_units.length; i++) {
-    var doc = {};
-    doc.id = i + 1;
-    doc.author = author;
-    doc.title = answerUnits.answer_units[i].title;
-    doc.body = answerUnits.answer_units[i].content[0].text;
+/**
+ * Delete a Solr cluster
+ * @param  {Object}   req  Requested object
+ * @param  {Object}   res  Response object
+ * @return {Object}        HTTP response 200
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-15
+ * @version 0.1.0
+ */
+exports.deleteCluster = function(req, res) {
+  retrieve_and_rank.deleteCluster({
+    cluster_id: req.params.cluster_id
+  }, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
 
-    documents += '"add": { "doc":' + JSON.stringify(doc);
-    documents += '},';
+/**
+ * List Solr cluster configurations
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        List of Solr cluster configurations
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-15
+ * @version 0.1.0
+ */
+exports.listConfigurations = function(req, res) {
+  retrieve_and_rank.listConfigs({
+    cluster_id: req.params.cluster_id
+  }, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
 
-    //indexDocument(retrieve_and_rank, 'scf9b13b48_1835_48cf_ac7f_143b7bb8712b', 'example-collection', doc);
-  }
+/**
+ * List Solr cluster collections
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        List of Solr cluster collections
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.listCollections = function(req, res) {
+  retrieve_and_rank.listCollections({
+    cluster_id: req.params.cluster_id,
+    config_name: req.params.config_name
+  }, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
 
-  documents += '"commit" : {}';
-  documents += '}';
-
-  return documents; //JSON.parse(documents);
-}
-
-function getDocumentAuthor(document) {
-  // Find author
-  for (var i = 0; i < document.metadata.length; i++) {
-    if (document.metadata[i].name === 'author')
-      return document.metadata[i].content;
-  }
-}
-
-
-function indexDocument(retrieve_and_rank, cluster_id, collection_name, doc) {
-
+/**
+ * Create Solr collection
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        Solr collection information
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.createCollection = function(req, res) {
   var params = {
-    cluster_id: cluster_id,
-    collection_name: collection_name,
+    cluster_id: req.params.cluster_id,
+    config_name: req.params.config_name,
+    collection_name: (req.params.collection_name) ? req.params.collection_name : 'example-collection'
   };
+
+  retrieve_and_rank.createCollection(params, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
+
+/**
+ * Delete a Solr collection
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        HTTP response 200
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.deleteCollection = function(req, res) {
+  var params = {
+    cluster_id: req.params.cluster_id,
+    // config_name: req.params.config_name,
+    collection_name: req.params.collection_name
+  };
+
+  retrieve_and_rank.deleteCollection(params, function (error, response) {
+    if (error)
+      res.status(500).json(error);
+    else
+      res.status(200).json(response);
+  });
+};
+
+/**
+ * Index a document in a Solr cluster
+ * @param  {Object}   req  Requested object
+ * @param  {Object}   res  Response object
+ * @return {Object}        HTTP response 200
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.indexDocument = function(req, res) {
+  var params = {
+    cluster_id: req.params.cluster_id,
+    // config_name: req.params.config_name,
+    collection_name: req.params.collection_name
+  };
+
+  var doc = req.body.data;
 
   solrClient = retrieve_and_rank.createSolrClient(params);
 
-  console.log('Indexing a document...');
-  solrClient.add(doc, function (err, response) {
-    if (err) {
-      console.log('Error indexing document: ', err);
+  solrClient.add(doc, function (error, response) {
+    if (error) {
+      res.status(500).json(error);
     }
     else {
-      console.log('Indexed a document.');
-      solrClient.commit(function(err) {
-        if(err) {
-          console.log('Error committing change: ' + err);
-        }
-        else {
-          console.log('Successfully committed changes.');
-        }
+      solrClient.commit(function(error) {
+        if (error)
+          res.status(500).json(error);
+        else
+          res.status(200).json('Successfully committed changes.');
       });
     }
   });
+};
 
-}
+/**
+ * List Solr cluster documents
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        List of Solr cluster documents
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.listDocuments = function(req, res) {
+  var params = {
+    cluster_id: req.params.cluster_id,
+    // config_name: req.params.config_name,
+    collection_name: req.params.collection_name
+  };
 
+  // Get a Solr client for indexing and searching documents.
+  // See https://github.com/watson-developer-cloud/nodejs-wrapper/tree/master/services/retrieve_and_rank.
+  solrClient = retrieve_and_rank.createSolrClient(params);
 
-function createCluster(retrieve_and_rank) {
-  retrieve_and_rank.createCluster({
-    cluster_size: '1',
-    cluster_name: 'My cluster'
-  },
-  function (err, response) {
-    if (err)
-    console.log('error:', err);
+  var query = solrClient.createQuery();
+  query.q({ '*' : '*' });
+
+  solrClient.search(query, function(error, searchResponse) {
+    if (error)
+      res.status(500).json(error);
     else
-    console.log(JSON.stringify(response, null, 2));
+      res.status(200).json(searchResponse.response);
   });
-}
+};
 
-function listClusters(retrieve_and_rank) {
-  retrieve_and_rank.listClusters({
 
-  },
-  function (err, response) {
-    if (err)
-    console.log('error:', err);
-    else
-    console.log(JSON.stringify(response, null, 2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.searchDocument = function(req, res) {
+  var params = {
+    cluster_id: req.params.cluster_id,
+    // config_name: req.params.config_name,
+    collection_name: req.params.collection_name
+  };
+
+  // Get a Solr client for indexing and searching documents.
+  // See https://github.com/watson-developer-cloud/nodejs-wrapper/tree/master/services/retrieve_and_rank.
+  solrClient = retrieve_and_rank.createSolrClient(params);
+
+  console.log('Searching all documents.');
+  var query = solrClient.createQuery();
+  query.q({ '*' : '*' });
+
+  solrClient.search(query, function(error, searchResponse) {
+    if (error) {
+      res.status(500).json(error);
+    }
+    else {
+      console.log('Found ' + searchResponse.response.numFound + ' documents.');
+      console.log('First document: ' + JSON.stringify(searchResponse.response.docs[0], null, 2));
+
+      res.status(200).json(searchResponse.response.docs[0]);
+    }
   });
-}
-
-function deleteCluster(retrieve_and_rank, cluster_id) {
-  retrieve_and_rank.deleteCluster({
-    cluster_id: cluster_id
-  },
-  function (err, response) {
-    if (err)
-    console.log('error:', err);
-    else
-    console.log(JSON.stringify(response, null, 2));
-  });
-}
+};
