@@ -1,0 +1,9 @@
+<section class="txt-center col-sm-10 col-sm-offset-1">
+  <h1>What do you want to know?</h1>
+  <input type="text" name="text" ng-model="question" ng-change="textChanged($event)" ng-model-options="{debounce: 1500}" autofocus />
+</section>
+
+<aside class="txt-center col-sm-10 col-sm-offset-1" ng-show="file">
+    <img class="loader" ng-hide="answerUnits" src="../watson.gif">
+    <p ng-show="answerUnits">{{answerUnits}}</p>
+</aside>

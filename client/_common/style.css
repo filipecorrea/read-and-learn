@@ -6454,30 +6454,41 @@ body {
   line-height: 1.8em;
   background-color: #fff; }
 
+h1, h2, p, button, table {
+  margin: 1em 0; }
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300; }
 
 h1 {
-  font-size: 36px;
-  margin-bottom: 35px; }
+  font-size: 36px; }
 
 h2 {
-  font-size: 28px;
-  margin-bottom: 1.8em; }
+  font-size: 28px; }
 
 a:hover {
   color: #337ab7;
   text-decoration: none; }
 
+strong {
+  font-weight: 400; }
+
+table {
+  box-sizing: border-box; }
+  table tr:first-of-type {
+    border-bottom: 1px solid #eee; }
+  table th, table td {
+    padding: 1em;
+    text-align: left; }
+
 aside, section {
   margin-bottom: 2.5em; }
 
-aside strong {
-  font-weight: 400; }
-aside ul {
-  padding: 0 !important;
-  font-size: 18px;
-  list-style: none; }
+.txt-center {
+  text-align: center; }
+
+img.loader {
+  width: 3em; }
 
 .view--animate-entry.ng-enter {
   transition: transform 0.25s ease-in-out, opacity 0.5s ease-out;
@@ -6492,26 +6503,22 @@ aside ul {
   .navbar .navbar-brand {
     font-weight: 400; }
 
+aside {
+  -webkit-transition: all ease-out 0.5s;
+  transition: all ease-out 0.5s; }
+  aside.ng-hide {
+    opacity: 0; }
+
 section input {
   display: block;
   width: 100%;
   padding: 0;
+  text-align: center;
   border: none;
   resize: none;
   overflow: hidden; }
   section input:focus {
     outline: 0; }
-
-aside {
-  font-size: 28px;
-  -webkit-transition: all ease-out 0.5s;
-  transition: all ease-out 0.5s; }
-  aside.ng-hide {
-    opacity: 0; }
-  aside .center {
-    text-align: center; }
-  aside img.loader {
-    width: 3em; }
 
 p.copy {
   margin-top: 2em;

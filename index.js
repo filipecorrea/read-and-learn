@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/client'));
 
 // Features
-//require('./server/watson/nlc/nlc.routes.js')(app);
+require('./server/watson/document_conversion/document_conversion.routes.js')(app);
+require('./server/watson/retrieve_and_rank/retrieve_and_rank.routes.js')(app);
 
 // Start server
 var server = app.listen(process.env.VCAP_APP_PORT || 3000, function () {

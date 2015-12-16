@@ -1,4 +1,4 @@
-angular.module('natural-language-classifier').controller('uploadController', function ($scope, $rootScope, $http) {
+angular.module('read-and-learn').controller('qaController', function ($scope, $rootScope, $http) {
 
   $scope.textChanged = function(event) {
     if ($scope.question) {
@@ -6,6 +6,7 @@ angular.module('natural-language-classifier').controller('uploadController', fun
       $scope.answer = '';
       $scope.confidence = '';
 
+      /*
       $http({
         method: 'POST',
         url: '/api/nlc',
@@ -18,20 +19,8 @@ angular.module('natural-language-classifier').controller('uploadController', fun
         //console.log('error');
         //console.log(response.status);
       });
+      */
     }
-  };
-
-  /**
-   * Convert to percentage and round up a number with two decimal places.
-   * @param  {Number} number The number to be converted.
-   * @return {String}        The number converted.
-   *
-   * @author  filipecorrea@br.ibm.com
-   * @since   2015-11-25
-   * @version 0.1
-   */
-  var percentNumber = function(number) {
-    return +(Math.ceil(number * 100 + "e+2")  + "e-2") + "%";
   };
 
 });
