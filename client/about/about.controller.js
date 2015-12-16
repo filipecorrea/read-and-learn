@@ -1,2 +1,2 @@
-angular.module('read-and-rank').controller('aboutController', function ($rootScope, $location, $scope, $timeout) {
+angular.module('read-and-learn').controller('aboutController', function ($rootScope, $location, $scope, $timeout) {
 });

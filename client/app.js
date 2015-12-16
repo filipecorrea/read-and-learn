@@ -1,4 +1,4 @@
-var app = angular.module('read-and-rank', [
+var app = angular.module('read-and-learn', [
   'ui.router',
   'ui.bootstrap',
   'ngAnimate',
@@ -8,7 +8,7 @@ var app = angular.module('read-and-rank', [
   'ngSocial'
 ]).config(function($locationProvider,  $stateProvider, $urlRouterProvider){
     //$locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise("/upload");
+    $urlRouterProvider.otherwise("/read");
 });
 
 app.run(function($rootScope, $state){
