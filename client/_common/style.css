@@ -6454,7 +6454,7 @@ body {
   line-height: 1.8em;
   background-color: #fff; }
 
-h1, h2, p, button {
+h1, h2, p, button, table {
   margin: 1em 0; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -6473,11 +6473,22 @@ a:hover {
 strong {
   font-weight: 400; }
 
+table {
+  box-sizing: border-box; }
+  table tr:first-of-type {
+    border-bottom: 1px solid #eee; }
+  table th, table td {
+    padding: 1em;
+    text-align: left; }
+
 aside, section {
   margin-bottom: 2.5em; }
 
 .txt-center {
   text-align: center; }
+
+img.loader {
+  width: 3em; }
 
 .view--animate-entry.ng-enter {
   transition: transform 0.25s ease-in-out, opacity 0.5s ease-out;
@@ -6497,8 +6508,6 @@ aside {
   transition: all ease-out 0.5s; }
   aside.ng-hide {
     opacity: 0; }
-  aside img.loader {
-    width: 3em; }
 
 section input {
   display: block;

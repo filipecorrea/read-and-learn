@@ -25,7 +25,7 @@ body {
   background-color: #fff;
 }
 
-h1, h2, p, button {
+h1, h2, p, button, table {
   margin: 1em 0;
 }
 
@@ -54,10 +54,27 @@ strong {
   font-weight: 400;
 }
 
+table {
+  box-sizing: border-box;
+
+  tr:first-of-type {
+    border-bottom: 1px solid #eee;
+  }
+
+  th, td {
+    padding: 1em;
+    text-align: left;
+  }
+}
+
 aside, section {
   margin-bottom: 2.5em;
 }
 
 .txt-center {
   text-align: center;
+}
+
+img.loader {
+  width: 3em;
 }

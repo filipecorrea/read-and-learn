@@ -1,13 +1,22 @@
 <section class="txt-center col-sm-10 col-sm-offset-1">
-  <h1>Read documents</h1>
-  <button type="button" ng-click="read()" class="btn btn-default btn-lg">Read sample documents</button>
-  <button type="button" ng-click="upload()" class="btn btn-default btn-lg disabled">Upload documents</button>
+  <h1>Upload a PDF, Microsoft Word or HTML document</h1>
+  <button type="button" ng-click="read()" class="btn btn-default btn-lg">Read sample document</button>
+  <button type="button" ng-click="upload()" class="btn btn-default btn-lg disabled">Upload document</button>
   <!-- <p>Upload a PDF, Microsoft Word or HTML document (1 MB maximum size).</p> -->
 </section>
 
-<aside class="txt-center col-sm-10 col-sm-offset-1" ng-show="file || answerUnits">
-    <img class="loader" ng-hide="answerUnits" src="../watson.gif">
-    <p ng-hide="answerUnits">Reading documents...</p>
+<aside class="txt-center col-sm-10 col-sm-offset-1">
+    <img class="loader" ng-hide="documents" src="../watson.gif">
+    <p ng-show="documents">So far, I've read {{documents.length}} document<span ng-show="documents.length > 1">s</span> and I've learned {{answers}} answer<span ng-show="answers > 1">s</span>.</p>
 
-    <p ng-show="answerUnits">{{answerUnits}}</p>
+    <table class="col-sm-12" ng-show="documents.length > 0">
+      <tr>
+        <th>Name</th>
+        <th>Author</th>
+      </tr>
+      <tr ng-repeat="document in documents">
+        <td>{{document.bibliography}}</td>
+        <td>{{document.author}}</td>
+      </tr>
+    </table>
 </aside>
