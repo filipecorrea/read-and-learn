@@ -6509,6 +6509,19 @@ aside {
   aside.ng-hide {
     opacity: 0; }
 
+form .progress {
+  line-height: 15px; }
+
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC; }
+
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0; }
+
 section input {
   display: block;
   width: 100%;
