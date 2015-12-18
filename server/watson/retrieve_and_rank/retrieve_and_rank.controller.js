@@ -1,7 +1,5 @@
 var watson = require('watson-developer-cloud');
 
-// http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/retrieve-and-rank/api/v1/
-
 var retrieve_and_rank = watson.retrieve_and_rank({
   username: 'f572ec81-7297-406d-afe6-f6105f1dc1e0',
   password: '8pAwhUstlrIX',
@@ -148,7 +146,7 @@ exports.createCollection = function(req, res) {
   var params = {
     cluster_id: req.params.cluster_id,
     config_name: req.params.config_name,
-    collection_name: (req.params.collection_name) ? req.params.collection_name : 'example-collection'
+    collection_name: req.params.collection_name
   };
 
   retrieve_and_rank.createCollection(params, function (error, response) {
@@ -252,23 +250,17 @@ exports.listDocuments = function(req, res) {
   });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-exports.searchDocument = function(req, res) {
+/**
+ * Search documents in Solr collection
+ * @param  {Object}   req  Requested object.
+ * @param  {Object}   res  Response object.
+ * @return {Object}        List of documents
+ *
+ * @author  filipecorrea@br.ibm.com
+ * @since   2015-12-16
+ * @version 0.1.0
+ */
+exports.searchDocuments = function(req, res) {
   var params = {
     cluster_id: req.params.cluster_id,
     // config_name: req.params.config_name,
@@ -279,19 +271,13 @@ exports.searchDocument = function(req, res) {
   // See https://github.com/watson-developer-cloud/nodejs-wrapper/tree/master/services/retrieve_and_rank.
   solrClient = retrieve_and_rank.createSolrClient(params);
 
-  console.log('Searching all documents.');
   var query = solrClient.createQuery();
-  query.q({ '*' : '*' });
+  query.q({ 'body' : req.body.query });
 
   solrClient.search(query, function(error, searchResponse) {
-    if (error) {
+    if (error)
       res.status(500).json(error);
-    }
-    else {
-      console.log('Found ' + searchResponse.response.numFound + ' documents.');
-      console.log('First document: ' + JSON.stringify(searchResponse.response.docs[0], null, 2));
-
-      res.status(200).json(searchResponse.response.docs[0]);
-    }
+    else
+      res.status(200).json(searchResponse.response);
   });
 };

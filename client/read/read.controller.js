@@ -1,4 +1,4 @@
-angular.module('read-and-learn').controller('readController', function ($scope, $rootScope, $http) {
+angular.module('read-and-learn').controller('readController', function ($scope, $rootScope, $http, Upload, $timeout) {
 
   $scope.documents = null;
 
@@ -8,9 +8,13 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
 
   getAllDocuments();
 
-  $scope.read = function() {
+  $scope.read = function(file) {
     $scope.documents = null;
-    $scope.file = 'data/samplePDF.pdf';
+    console.log(file);
+    if (file)
+      $scope.file = 'data/' + file;
+    else
+      $scope.file = 'data/samplePDF.pdf';
 
     // Call API to convert documents into normalized sets of answer units
     $http({
@@ -56,12 +60,30 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
     });
   };
 
-  $scope.upload = function() {
-    // TODO Ask for file
+  $scope.upload = function(files, errFiles) {
+    $scope.files = files;
+    $scope.errFiles = errFiles;
+    angular.forEach(files, function(file) {
+      file.upload = Upload.upload({
+        url: '/api/upload',
+        data: {
+          file: file
+        }
+      });
 
-    // TODO Upload file to server
-
-    // TODO Call read function
+      file.upload.then(function successCallback(response) {
+        $timeout(function () {
+          file.result = response.data;
+          // Convert document
+          $scope.read(response.config.data.file.name);
+        });
+      }, function errorCallback(response) {
+        if (response.status > 0)
+          $scope.errorMsg = response.status + ': ' + response.data;
+      }, function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+    });
   };
 
   function getAllDocuments() {

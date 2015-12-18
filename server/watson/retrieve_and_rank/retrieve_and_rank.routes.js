@@ -36,7 +36,7 @@ module.exports = function(app) {
   // http://localhost:3000/api/retrieve-and-rank/scf9b13b48_1835_48cf_ac7f_143b7bb8712b/example-config/example-collection2/documents
   app.get('/api/retrieve-and-rank/:cluster_id/:config_name/:collection_name/documents', retrieveAndRankController.listDocuments);
   // Search Solr standard query parser
-  app.get('/api/retrieve-and-rank/:cluster_id/:config_name/:collection_name', retrieveAndRankController.searchDocument);
+  app.post('/api/retrieve-and-rank/:cluster_id/:config_name/:collection_name/documents', retrieveAndRankController.searchDocuments);
 
   // TODO Create ranker
   // http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/retrieve-and-rank/api/v1/

@@ -5,7 +5,8 @@ var app = angular.module('read-and-learn', [
   'ngCookies',
   'angular-jwt',
   'ngSanitize',
-  'ngSocial'
+  'ngSocial',
+  'ngFileUpload'
 ]).config(function($locationProvider,  $stateProvider, $urlRouterProvider){
     //$locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise("/read");
