@@ -1,9 +1,20 @@
-<section class="txt-center col-sm-10 col-sm-offset-1">
-  <h1>What do you want to know?</h1>
-  <input type="text" name="text" ng-model="question" ng-change="textChanged($event)" ng-model-options="{debounce: 1500}" autofocus />
+<section class="qa col-sm-10 col-sm-offset-1">
+  <h1>What are you looking for?</h1>
+  <input type="text" name="text" ng-model="question" ng-change="textChanged($event)" ng-model-options="{debounce: 1500}" autofocus placeholder="Type words for searching" />
 </section>
 
-<aside class="txt-center col-sm-10 col-sm-offset-1" ng-show="file">
-    <img class="loader" ng-hide="answerUnits" src="../watson.gif">
-    <p ng-show="answerUnits">{{answerUnits}}</p>
+<aside class="col-sm-10 col-sm-offset-1" ng-show="documents">
+
+  <div class="loader" ng-hide="documents">
+    <img src="../watson.gif">
+  </div>
+
+  <p ng-show="error">{{error}}</p>
+  <ul class="" ng-show="documents.length > 0">
+    <li ng-repeat="document in documents">
+      <h2>{{document.title[0]}}</h2>
+      <p>{{document.body[0]}}</p>
+      <a href="#">{{document.bibliography[0]}}</a>
+    </li>
+  </ul>
 </aside>

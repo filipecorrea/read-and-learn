@@ -75,6 +75,9 @@ aside, section {
   text-align: center;
 }
 
-img.loader {
-  width: 3em;
+.loader {
+  text-align: center;
+  img {
+    width: 3em;
+  }
 }

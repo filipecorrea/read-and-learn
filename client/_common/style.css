@@ -6487,8 +6487,10 @@ aside, section {
 .txt-center {
   text-align: center; }
 
-img.loader {
-  width: 3em; }
+.loader {
+  text-align: center; }
+  .loader img {
+    width: 3em; }
 
 .view--animate-entry.ng-enter {
   transition: transform 0.25s ease-in-out, opacity 0.5s ease-out;
@@ -6509,15 +6511,27 @@ aside {
   aside.ng-hide {
     opacity: 0; }
 
-section input {
+form .progress {
+  line-height: 15px; }
+
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC; }
+
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0; }
+
+section.qa input {
   display: block;
   width: 100%;
   padding: 0;
-  text-align: center;
   border: none;
   resize: none;
   overflow: hidden; }
-  section input:focus {
+  section.qa input:focus {
     outline: 0; }
 
 p.copy {

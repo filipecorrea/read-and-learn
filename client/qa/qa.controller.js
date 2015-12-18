@@ -1,25 +1,31 @@
 angular.module('read-and-learn').controller('qaController', function ($scope, $rootScope, $http) {
 
+  $scope.documents = null;
+  $scope.error = null;
+
+  var cluster_id = 'scf9b13b48_1835_48cf_ac7f_143b7bb8712b';
+  var config_name = 'example-config';
+  var collection_name = 'example-collection3';
+
   $scope.textChanged = function(event) {
     if ($scope.question) {
+      $scope.documents = null;
+      $scope.error = null;
 
-      $scope.answer = '';
-      $scope.confidence = '';
+      // TODO Set timeout to show message if no result is found
 
-      /*
+      // Call API to retrieve documents
       $http({
         method: 'POST',
-        url: '/api/nlc',
-        data: { 'text': $scope.question }
+        url: '/api/retrieve-and-rank/' + cluster_id + '/' + config_name + '/' + collection_name + '/documents',
+        data: {
+          'query': $scope.question
+        }
       }).then(function successCallback(response) {
-        $scope.answer = response.data.top_class;
-        $scope.confidence = percentNumber(response.data.classes[0].confidence);
+        $scope.documents = response.data.docs;
       }, function errorCallback(response) {
-        // TODO: Treat error
-        //console.log('error');
-        //console.log(response.status);
+        $scope.error = response;
       });
-      */
     }
   };
 

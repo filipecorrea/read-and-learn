@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/client'));
 
 // Features
+require('./server/utils/upload/upload.routes.js')(app);
 require('./server/watson/document_conversion/document_conversion.routes.js')(app);
 require('./server/watson/retrieve_and_rank/retrieve_and_rank.routes.js')(app);
 
