@@ -10,7 +10,7 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
 
   $scope.read = function(file) {
     $scope.documents = null;
-    console.log(file);
+
     if (file)
       $scope.file = 'data/' + file;
     else
@@ -35,6 +35,8 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
         doc.bibliography = $scope.file;
         doc.title = response.data.answer_units[i].title;
         doc.body = response.data.answer_units[i].content[0].text;
+
+        console.log(doc);
 
         // Add documents to a collection
         $http({
