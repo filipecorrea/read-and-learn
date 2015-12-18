@@ -19,7 +19,10 @@
 </section>
 
 <aside class="txt-center col-sm-10 col-sm-offset-1">
-    <img class="loader" ng-hide="documents" src="../watson.gif">
+    <div class="loader" ng-hide="documents">
+      <img src="../watson.gif">
+    </div>
+
     <p ng-show="documents">So far, I've read {{documents.length}} document<span ng-show="documents.length > 1">s</span> and I've learned {{answers}} answer<span ng-show="answers > 1">s</span>.</p>
 
     <table class="col-sm-12" ng-show="documents.length > 0">
