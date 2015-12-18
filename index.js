@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 // Serve the angular client
 app.use('/', express.static(__dirname + '/client'));
 
+// Serve documents data
+app.use('/data/', express.static(__dirname + '/data'));
+
 // Features
 require('./server/utils/upload/upload.routes.js')(app);
 require('./server/watson/document_conversion/document_conversion.routes.js')(app);

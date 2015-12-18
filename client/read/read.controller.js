@@ -36,8 +36,6 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
         doc.title = response.data.answer_units[i].title;
         doc.body = response.data.answer_units[i].content[0].text;
 
-        console.log(doc);
-
         // Add documents to a collection
         $http({
           method: 'POST',
@@ -104,13 +102,13 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
         if (response.data.docs[i].bibliography[0] !== currentDoc) {
           var doc = {
             "id" : response.data.docs[i].id[0],
-            "author" : response.data.docs[i].author[0],
-            "bibliography" : response.data.docs[i].bibliography[0],
-            "title" : response.data.docs[i].title[0],
-            "body" : response.data.docs[i].body[0]
+            "author" : (response.data.docs[i].author) ? response.data.docs[i].author[0] : '',
+            "bibliography" : (response.data.docs[i].bibliography) ? response.data.docs[i].bibliography[0] : '',
+            "title" : (response.data.docs[i].title) ? response.data.docs[i].title[0] : '',
+            "body" : (response.data.docs[i].body) ? response.data.docs[i].body[0] : ''
           };
           $scope.documents.push(doc);
-          currentDoc = response.data.docs[i].bibliography[0];
+          currentDoc = doc.bibliography;
         }
       }
       // Count answer units
@@ -130,10 +128,17 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
    * @version 0.1.0
    */
   function getDocumentAuthor(metadata) {
-    for (var i = 0; i < metadata.length; i++) {
-      if (metadata[i].name === 'author')
-        return metadata[i].content;
+    console.log(metadata);
+    if (metadata) {
+      for (var i = 0; i < metadata.length; i++) {
+        if (metadata[i].name === 'author')
+          return metadata[i].content;
+
+        return '';
+      }
     }
+
+    return '';
   }
 
 });
