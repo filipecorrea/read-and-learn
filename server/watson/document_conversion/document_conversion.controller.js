@@ -2,8 +2,8 @@ var watson = require('watson-developer-cloud');
 var fs = require('fs');
 
 var document_conversion = watson.document_conversion({
-  username: '{{username}}',
-  password: '{{password}}',
+  username: '{username}',
+  password: '{password}',
   version: 'v1'
 });
 
