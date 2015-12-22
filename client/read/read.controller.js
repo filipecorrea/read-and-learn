@@ -4,7 +4,7 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
 
   var cluster_id = 'scf9b13b48_1835_48cf_ac7f_143b7bb8712b';
   var config_id = 'example-config';
-  var collection_id = 'example-collection3';
+  var collection_id = 'read-and-learn-dev-collection';
 
   getAllDocuments();
 
@@ -128,7 +128,6 @@ angular.module('read-and-learn').controller('readController', function ($scope, 
    * @version 0.1.0
    */
   function getDocumentAuthor(metadata) {
-    console.log(metadata);
     if (metadata) {
       for (var i = 0; i < metadata.length; i++) {
         if (metadata[i].name === 'author')
