@@ -5,14 +5,14 @@
     <button type="button" ng-click="read()" class="btn btn-default btn-lg">Read sample document</button>
     <button type="button" class="btn btn-default btn-lg" ngf-select="upload($files, $invalidFiles)" multiple accept=".doc|.docx|.pdf|.html|.htm" ngf-max-size="1MB">Upload documents</button>
 
-    <ul>
+    <!-- <ul>
       <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
         <span class="progress" ng-show="f.progress >= 0">
           <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
         </span>
       </li>
       <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-    </ul>
+    </ul> -->
     <p>{{errorMsg}}</p>
   </form>
   <!-- <p>Upload a PDF, Microsoft Word or HTML document (1 MB maximum size).</p> -->
