@@ -1,8 +1,8 @@
 var watson = require('watson-developer-cloud');
 
 var retrieve_and_rank = watson.retrieve_and_rank({
-  username: 'f572ec81-7297-406d-afe6-f6105f1dc1e0',
-  password: '8pAwhUstlrIX',
+  username: '{username}',
+  password: '{password}',
   version: 'v1'
 });
 
